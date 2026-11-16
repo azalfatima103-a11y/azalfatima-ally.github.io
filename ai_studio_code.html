@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Elena Vance — Computational Neuroscience & AI</title>
+  <meta name="description" content="Academic homepage of Dr. Elena Vance, Assistant Professor of Computational Neuroscience." />
+
+  <!-- Editorial & Scholarly Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================================
+       1. DESIGN TOKENS & THEMING
+       ========================================================================== */
+    :root {
+      --bg: #fafaf9;
+      --bg-elevated: #ffffff;
+      --bg-subtle: #f5f5f4;
+      --text: #1c1917;
+      --text-muted: #57534e;
+      --text-faint: #78716c;
+      --border: #e7e5e4;
+      --border-strong: #d6d3d1;
+      --accent: #1e3a8a;         /* Classic Academic Navy */
+      --accent-soft: #eff6ff;
+      --accent-text: #1d4ed8;
+      --highlight: #b45309;      /* Warm Amber for Awards/Selected */
+      --highlight-soft: #fef3c7;
+      --nav-bg: rgba(250, 250, 249, 0.85);
+      --shadow-sm: 0 1px 2px rgba(28, 25, 23, 0.04);
+      --shadow-md: 0 8px 24px rgba(28, 25, 23, 0.06);
+      --radius: 10px;
+      --font-serif: "Newsreader", Georgia, serif;
+      --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: "JetBrains Mono", monospace;
+    }
+
+    [data-theme="dark"] {
+      --bg: #111110;
+      --bg-elevated: #1c1b19;
+      --bg-subtle: #262522;
+      --text: #f5f5f4;
+      --text-muted: #a8a29e;
+      --text-faint: #78716c;
+      --border: #2e2c29;
+      --border-strong: #44403c;
+      --accent: #60a5fa;
+      --accent-soft: rgba(59, 130, 246, 0.12);
+      --accent-text: #93c5fd;
+      --highlight: #fbbf24;
+      --highlight-soft: rgba(251, 191, 36, 0.12);
+      --nav-bg: rgba(17, 17, 16, 0.85);
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    /* ==========================================================================
+       2. RESET & BASE TYPOGRAPHY
+       ========================================================================== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 15.5px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-serif);
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      margin: 0;
+    }
+
+    a {
+      color: var(--accent-text);
+      text-decoration: none;
+      transition: opacity 0.15s ease, color 0.15s ease;
+    }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 3.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    section:last-of-type { border-bottom: none; }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+    .section-title { font-size: 1.85rem; }
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    /* ==========================================================================
+       3. NAVIGATION
+       ========================================================================== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 4rem;
+    }
+    .brand {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .brand:hover { text-decoration: none; opacity: 0.8; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .icon-btn {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+    .icon-btn:hover { border-color: var(--border-strong); }
+
+    /* ==========================================================================
+       4. HERO & PROFILE
+       ========================================================================== */
+    .hero {
+      padding: 4.5rem 0 3.5rem;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.55fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-text);
+      margin-bottom: 1.1rem;
+    }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-text);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.25rem, 4vw, 3rem);
+      margin-bottom: 0.5rem;
+    }
+    .hero-role {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 1.35rem;
+    }
+    .hero-bio p {
+      margin: 0 0 1rem;
+      color: var(--text);
+    }
+
+    .link-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+    }
+    .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 7px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      color: var(--text);
+      box-shadow: var(--shadow-sm);
+    }
+    .pill-btn:hover {
+      border-color: var(--accent-text);
+      color: var(--accent-text);
+      text-decoration: none;
+    }
+    .pill-btn.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+    .pill-btn.primary:hover { opacity: 0.92; color: #ffffff; }
+
+    /* Profile Card */
+    .profile-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .avatar-box {
+      width: 100%;
+      aspect-ratio: 4 / 4.2;
+      border-radius: 8px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--bg-subtle), var(--border));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .meta-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 0.85rem;
+    }
+    .meta-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.45rem 0;
+      border-bottom: 1px dashed var(--border);
+      gap: 0.75rem;
+    }
+    .meta-list li:last-child { border-bottom: none; }
+    .meta-label { color: var(--text-faint); }
+    .meta-val { font-weight: 500; text-align: right; }
+
+    /* ==========================================================================
+       5. RESEARCH THEMES & NEWS
+       ========================================================================== */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.35rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .card-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent-text);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .card h3 { font-size: 1.25rem; margin-bottom: 0.6rem; }
+    .card p { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
+
+    /* News Timeline */
+    .news-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      border-left: 2px solid var(--border);
+      padding-left: 1.25rem;
+    }
+    .news-item {
+      position: relative;
+      padding-bottom: 1.15rem;
+      display: grid;
+      grid-template-columns: 95px 1fr;
+      gap: 1rem;
+      align-items: baseline;
+    }
+    .news-item:last-child { padding-bottom: 0; }
+    .news-item::before {
+      content: "";
+      position: absolute;
+      left: -1.6rem;
+      top: 0.45rem;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--accent-text);
+    }
+    .news-date {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-faint);
+    }
+    .news-text { font-size: 0.94rem; }
+
+    /* ==========================================================================
+       6. PUBLICATIONS (FILTERABLE + INTERACTIVE)
+       ========================================================================== */
+    .pub-controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .filter-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .filter-btn:hover { border-color: var(--border-strong); color: var(--text); }
+    .filter-btn.active {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+    }
+    .search-input {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.42rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      width: 240px;
+      outline: none;
+    }
+    .search-input:focus { border-color: var(--accent-text); }
+
+    .pub-list { display: flex; flex-direction: column; gap: 1rem; }
+    .pub-item {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.4rem;
+      transition: border-color 0.15s ease;
+    }
+    .pub-item:hover { border-color: var(--border-strong); }
+    .pub-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .pub-venue-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+    }
+    .badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 5px;
+      background: var(--bg-subtle);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+    .badge.award {
+      background: var(--highlight-soft);
+      color: var(--highlight);
+      border-color: transparent;
+      font-weight: 500;
+    }
+    .pub-title {
+      font-family: var(--font-serif);
+      font-size: 1.22rem;
+      font-weight: 500;
+      margin-bottom: 0.35rem;
+      color: var(--text);
+    }
+    .pub-authors {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+    }
+    .pub-authors strong { color: var(--text); font-weight: 600; }
+
+    .pub-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .pub-btn {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      padding: 0.28rem 0.65rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text-muted);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .pub-btn:hover {
+      border-color: var(--accent-text);
+      color: var(--accent-text);
+      text-decoration: none;
+    }
+    .pub-abstract {
+      margin-top: 0.9rem;
+      padding-top: 0.9rem;
+      border-top: 1px dashed var(--border);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      display: none;
+    }
+    .pub-abstract.open { display: block; }
+
+    /* ==========================================================================
+       7. TEACHING, LAB & FOOTER
+       ========================================================================== */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .clean-list { list-style: none; padding: 0; margin: 0; }
+    .clean-list li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .clean-list li:last-child { border-bottom: none; }
+    .item-title { font-weight: 600; font-size: 0.95rem; }
+    .item-meta { font-size: 0.85rem; color: var(--text-muted); }
+
+    .callout-box {
+      background: var(--accent-soft);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent-text);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin-top: 2rem;
+    }
+    .callout-box h4 {
+      margin: 0 0 0.4rem;
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+    }
+    .callout-box p { margin: 0; font-size: 0.92rem; color: var(--text-muted); }
+
+    footer {
+      padding: 2.5rem 0 3.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-faint);
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* ==========================================================================
+       8. BIBTEX MODAL & TOAST
+       ========================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      z-index: 200;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      max-width: 620px;
+      width: 100%;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-md);
+    }
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .modal-head h3 { font-size: 1.3rem; }
+    pre.bibtex-code {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      overflow-x: auto;
+      line-height: 1.5;
+      margin: 0 0 1rem;
+      color: var(--text);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: var(--text);
+      color: var(--bg);
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: all 0.2s ease;
+      z-index: 300;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    /* ==========================================================================
+       9. RESPONSIVE & PRINT
+       ========================================================================== */
+    @media (max-width: 820px) {
+      .hero-grid, .grid-3, .two-col { grid-template-columns: 1fr; }
+      .hero-grid { gap: 2rem; }
+      .profile-card { max-width: 340px; }
+      .nav-links a.hide-mobile { display: none; }
+      .news-item { grid-template-columns: 1fr; gap: 0.2rem; }
+      .search-input { width: 100%; }
+    }
+
+    @media print {
+      .navbar, .pub-controls, .pub-actions, .icon-btn { display: none !important; }
+      body { background: #fff; color: #000; }
+      section { border: none; padding: 1.25rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#top" class="brand">Elena Vance</a>
+      <nav class="nav-links">
+        <a href="#research" class="hide-mobile">Research</a>
+        <a href="#news" class="hide-mobile">News</a>
+        <a href="#publications">Publications</a>
+        <a href="#teaching" class="hide-mobile">Teaching & Lab</a>
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">
+          <svg id="themeIcon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="container">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="hero-bio">
+          <div class="status-pill">
+            <span class="status-dot"></span>
+            Recruiting PhD &amp; Postdoc Fellows for Fall 2027
+          </div>
+          <h1>Dr. Elena Vance</h1>
+          <div class="hero-role">
+            Assistant Professor of Computational Neuroscience &amp; AI<br />
+            <a href="#">Department of Brain &amp; Cognitive Sciences</a>, Meridian Institute of Technology
+          </div>
+
+          <p>
+            I lead the <strong>Neural Geometry &amp; Inference Lab</strong>. My research investigates how biological and artificial neural networks learn structured representations, generalize from sparse experience, and perform robust causal inference under uncertainty.
+          </p>
+          <p>
+            Before joining Meridian, I was a Postdoctoral Fellow at the Gatsby Computational Neuroscience Unit and completed my PhD in Computer Science at ETH Zürich, advised by Prof. Henrik Lindqvist.
+          </p>
+
+          <div class="link-pills">
+            <a href="#" class="pill-btn primary">Download CV (PDF)</a>
+            <a href="#" class="pill-btn">Google Scholar</a>
+            <a href="#" class="pill-btn">ORCID</a>
+            <a href="#" class="pill-btn">GitHub</a>
+            <a href="mailto:evance@meridian.edu" class="pill-btn">Email</a>
+          </div>
+        </div>
+
+        <aside class="profile-card">
+          <div class="avatar-box">
+            <!-- Clean Scholarly Portrait Placeholder (Replace with <img src="photo.jpg" alt="...">) -->
+            <svg width="110" height="110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="color: var(--text-faint);">
+              <circle cx="12" cy="8" r="4"/>
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+            </svg>
+          </div>
+          <ul class="meta-list">
+            <li><span class="meta-label">Office</span><span class="meta-val">Bldg 46, Room 412</span></li>
+            <li><span class="meta-label">Lab</span><span class="meta-val">Neural Geometry Lab</span></li>
+            <li><span class="meta-label">Email</span><span class="meta-val">evance@meridian.edu</span></li>
+            <li><span class="meta-label">Advising</span><span class="meta-val">Tue 14:00–16:00</span></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Research Themes -->
+    <section id="research">
+      <div class="section-header">
+        <h2 class="section-title">Research Agenda</h2>
+        <span class="section-subtitle">01 / CORE THEMES</span>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <span class="card-kicker">THEME 01</span>
+          <h3>Representational Geometry</h3>
+          <p>Uncovering how cortical manifolds curve and disentangle sensory variables to enable rapid compositional generalization.</p>
+        </article>
+        <article class="card">
+          <span class="card-kicker">THEME 02</span>
+          <h3>Energy-Efficient Learning</h3>
+          <p>Designing local, biologically plausible credit-assignment rules that rival backpropagation without weight transport.</p>
+        </article>
+        <article class="card">
+          <span class="card-kicker">THEME 03</span>
+          <h3>Interpretability in Foundation Models</h3>
+          <p>Applying tools from systems neuroscience to probe latent world models inside large-scale generative transformers.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- News -->
+    <section id="news">
+      <div class="section-header">
+        <h2 class="section-title">Recent News</h2>
+        <span class="section-subtitle">02 / UPDATES</span>
+      </div>
+      <ul class="news-list">
+        <li class="news-item">
+          <span class="news-date">Nov 2026</span>
+          <span class="news-text">Two papers accepted to <strong>NeurIPS 2026</strong> (one Spotlight!). Congratulations to Maya and Liam.</span>
+        </li>
+        <li class="news-item">
+          <span class="news-date">Sep 2026</span>
+          <span class="news-text">Awarded the <strong>NSF CAREER Award</strong> to study compositional manifolds in biological and artificial vision.</span>
+        </li>
+        <li class="news-item">
+          <span class="news-date">Jul 2026</span>
+          <span class="news-text">Gave an invited keynote at the <em>Bernstein Conference Satellite Workshop</em> on Causal Neural Dynamics.</span>
+        </li>
+        <li class="news-item">
+          <span class="news-date">May 2026</span>
+          <span class="news-text">Our review on local plasticity rules is now out in <strong>Nature Reviews Neuroscience</strong>.</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Publications -->
+    <section id="publications">
+      <div class="section-header">
+        <h2 class="section-title">Publications</h2>
+        <span class="section-subtitle">03 / SELECTED &amp; ARCHIVE</span>
+      </div>
+
+      <div class="pub-controls">
+        <div class="filter-group" id="pubFilters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="selected">Selected</button>
+          <button class="filter-btn" data-filter="conference">Conference</button>
+          <button class="filter-btn" data-filter="journal">Journal</button>
+          <button class="filter-btn" data-filter="preprint">Preprint</button>
+        </div>
+        <input type="search" id="pubSearch" class="search-input" placeholder="Search title, author, venue..." aria-label="Search publications" />
+      </div>
+
+      <div class="pub-list" id="pubList"></div>
+    </section>
+
+    <!-- Teaching & Lab -->
+    <section id="teaching">
+      <div class="section-header">
+        <h2 class="section-title">Teaching &amp; Lab Group</h2>
+        <span class="section-subtitle">04 / MENTORSHIP</span>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <h3 style="margin-bottom: 0.75rem;">Courses</h3>
+          <ul class="clean-list">
+            <li>
+              <div class="item-title">BCS 9.660 — Theoretical Neuroscience</div>
+              <div class="item-meta">Graduate Seminar · Fall 2025, Fall 2026 · <a href="#">Syllabus</a></div>
+            </li>
+            <li>
+              <div class="item-title">CS 6.842 — Geometry of Deep Representations</div>
+              <div class="item-meta">Advanced Undergraduate / Grad · Spring 2026 · <a href="#">Lecture Notes</a></div>
+            </li>
+            <li>
+              <div class="item-title">Foundations of Statistical Inference</div>
+              <div class="item-meta">Undergraduate Core · Fall 2024</div>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 style="margin-bottom: 0.75rem;">Current Lab Members</h3>
+          <ul class="clean-list">
+            <li>
+              <div class="item-title">Dr. Aris Thorne — Postdoctoral Fellow</div>
+              <div class="item-meta">Sparse coding, cortical oscillations</div>
+            </li>
+            <li>
+              <div class="item-title">Maya Lin — PhD Candidate (Year 4)</div>
+              <div class="item-meta">Mechanistic interpretability &amp; circuit motifs</div>
+            </li>
+            <li>
+              <div class="item-title">Liam O'Connor — PhD Student (Year 2)</div>
+              <div class="item-meta">Biologically plausible meta-learning</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout-box">
+        <h4>Prospective Students &amp; Postdocs</h4>
+        <p>
+          If you are excited about mathematical theories of intelligence, neural data analysis, or building principled AI architectures, I encourage you to apply to the Brain &amp; Cognitive Sciences or EECS PhD programs and list me as a potential advisor. For postdoc inquiries, email your CV and a 1-page research statement.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <span>© 2026 Elena Vance · Meridian Institute of Technology</span>
+    <span>Last updated November 2026 · <a href="#top">Back to top ↑</a></span>
+  </footer>
+
+  <!-- BibTeX Modal -->
+  <div class="modal-backdrop" id="bibModal" role="dialog" aria-modal="true" aria-labelledby="bibModalTitle">
+    <div class="modal">
+      <div class="modal-head">
+        <h3 id="bibModalTitle">BibTeX Citation</h3>
+        <button class="icon-btn" id="closeModal" aria-label="Close modal">✕</button>
+      </div>
+      <pre class="bibtex-code" id="bibContent"></pre>
+      <div style="display: flex; justify-content: flex-end; gap: 0.6rem;">
+        <button class="pill-btn primary" id="copyBibBtn">Copy to Clipboard</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Copied to clipboard</div>
+
+  <script>
+    // =========================================================================
+    // 1. PUBLICATION DATA (Easy to edit / add your own papers)
+    // =========================================================================
+    const publications = [
+      {
+        id: "vance2026manifold",
+        title: "Curvature-Regularized Manifolds Enable Zero-Shot Compositional Generalization",
+        authors: "Maya Lin*, <strong>Elena Vance</strong>",
+        venue: "NeurIPS 2026",
+        year: 2026,
+        type: "conference",
+        selected: true,
+        award: "Spotlight (Top 3%)",
+        pdf: "#",
+        code: "#",
+        abstract: "We prove that bounding the sectional curvature of neural representations during unsupervised pretraining induces factorized latent geometries, allowing downstream linear readouts to generalize to unseen attribute combinations without fine-tuning.",
+        bibtex: `@inproceedings{lin2026curvature,
+  title     = {Curvature-Regularized Manifolds Enable Zero-Shot Compositional Generalization},
+  author    = {Lin, Maya and Vance, Elena},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2026}
+}`
+      },
+      {
+        id: "vance2026local",
+        title: "Local Credit Assignment in Deep Recurrent Circuits Without Weight Transport",
+        authors: "<strong>Elena Vance</strong>, Aris Thorne, Henrik Lindqvist",
+        venue: "Nature Reviews Neuroscience",
+        year: 2026,
+        type: "journal",
+        selected: true,
+        award: "Cover Feature",
+        pdf: "#",
+        code: null,
+        abstract: "A comprehensive synthesis of recent three-factor synaptic plasticity rules, dendritic error compartments, and burst-dependent multiplexing, reconciling empirical cortical recordings with normative gradient approximations.",
+        bibtex: `@article{vance2026local,
+  title   = {Local Credit Assignment in Deep Recurrent Circuits Without Weight Transport},
+  author  = {Vance, Elena and Thorne, Aris and Lindqvist, Henrik},
+  journal = {Nature Reviews Neuroscience},
+  volume  = {27},
+  pages   = {312--329},
+  year    = {2026}
+}`
+      },
+      {
+        id: "oconnor2026world",
+        title: "Emergent Topological Maps Inside Autoregressive Sequence Models",
+        authors: "Liam O'Connor, <strong>Elena Vance</strong>",
+        venue: "arXiv Preprint",
+        year: 2026,
+        type: "preprint",
+        selected: false,
+        award: null,
+        pdf: "#",
+        code: "#",
+        abstract: "Using persistent homology on residual stream activations, we show that next-token predictors trained purely on spatial navigation transcripts spontaneously recover metric 2D topological maps.",
+        bibtex: `@article{oconnor2026emergent,
+  title   = {Emergent Topological Maps Inside Autoregressive Sequence Models},
+  author  = {O'Connor, Liam and Vance, Elena},
+  journal = {arXiv preprint arXiv:2608.04112},
+  year    = {2026}
+}`
+      },
+      {
+        id: "vance2025sparse",
+        title: "Energetic Trade-offs in Sparse Distributed Coding Under Metabolic Constraints",
+        authors: "<strong>Elena Vance</strong>, Marcus Chen",
+        venue: "ICLR 2025",
+        year: 2025,
+        type: "conference",
+        selected: true,
+        award: "Oral Presentation",
+        pdf: "#",
+        code: "#",
+        abstract: "We derive optimal firing-rate sparsity regimes by balancing reconstruction fidelity against ATP-inspired L1 metabolic costs, matching empirical tuning widths observed in macaque V1.",
+        bibtex: `@inproceedings{vance2025energetic,
+  title     = {Energetic Trade-offs in Sparse Distributed Coding Under Metabolic Constraints},
+  author    = {Vance, Elena and Chen, Marcus},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2025}
+}`
+      }
+    ];
+
+    // =========================================================================
+    // 2. RENDER & FILTER PUBLICATIONS
+    // =========================================================================
+    const pubListEl = document.getElementById("pubList");
+    const searchInput = document.getElementById("pubSearch");
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    let activeFilter = "all";
+
+    function renderPublications() {
+      const query = searchInput.value.trim().toLowerCase();
+      const filtered = publications.filter((p) => {
+        const matchesFilter =
+          activeFilter === "all" ||
+          (activeFilter === "selected" && p.selected) ||
+          p.type === activeFilter;
+        const matchesQuery =
+          !query ||
+          p.title.toLowerCase().includes(query) ||
+          p.authors.toLowerCase().includes(query) ||
+          p.venue.toLowerCase().includes(query);
+        return matchesFilter && matchesQuery;
+      });
+
+      if (!filtered.length) {
+        pubListEl.innerHTML = `<p style="color: var(--text-muted); padding: 1rem 0;">No matching publications found.</p>`;
+        return;
+      }
+
+      pubListEl.innerHTML = filtered
+        .map(
+          (p) => `
+        <article class="pub-item">
+          <div class="pub-venue-row">
+            <span class="badge">${p.venue}</span>
+            ${p.award ? `<span class="badge award">★ ${p.award}</span>` : ""}
+          </div>
+          <div class="pub-title">${p.title}</div>
+          <div class="pub-authors">${p.authors}</div>
+          <div class="pub-actions">
+            <button class="pub-btn" onclick="toggleAbstract('${p.id}')">Abstract ▾</button>
+            <button class="pub-btn" onclick="openBibtex('${p.id}')">BibTeX</button>
+            ${p.pdf ? `<a class="pub-btn" href="${p.pdf}">PDF ↗</a>` : ""}
+            ${p.code ? `<a class="pub-btn" href="${p.code}">Code ↗</a>` : ""}
+          </div>
+          <div class="pub-abstract" id="abs-${p.id}">${p.abstract}</div>
+        </article>`
+        )
+        .join("");
+    }
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        filterButtons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        activeFilter = btn.dataset.filter;
+        renderPublications();
+      });
+    });
+
+    searchInput.addEventListener("input", renderPublications);
+
+    window.toggleAbstract = (id) => {
+      document.getElementById(`abs-${id}`).classList.toggle("open");
+    };
+
+    // =========================================================================
+    // 3. BIBTEX MODAL & CLIPBOARD
+    // =========================================================================
+    const bibModal = document.getElementById("bibModal");
+    const bibContent = document.getElementById("bibContent");
+    const toast = document.getElementById("toast");
+
+    window.openBibtex = (id) => {
+      const pub = publications.find((p) => p.id === id);
+      if (!pub) return;
+      bibContent.textContent = pub.bibtex;
+      bibModal.classList.add("open");
+    };
+
+    document.getElementById("closeModal").addEventListener("click", () => {
+      bibModal.classList.remove("open");
+    });
+    bibModal.addEventListener("click", (e) => {
+      if (e.target === bibModal) bibModal.classList.remove("open");
+    });
+
+    document.getElementById("copyBibBtn").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(bibContent.textContent);
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 2000);
+      } catch {
+        alert("Copy failed — please select and copy manually.");
+      }
+    });
+
+    // =========================================================================
+    // 4. LIGHT / DARK THEME TOGGLE
+    // =========================================================================
+    const root = document.documentElement;
+    const themeToggle = document.getElementById("themeToggle");
+    const savedTheme = localStorage.getItem("academic-theme") || "light";
+    root.setAttribute("data-theme", savedTheme);
+
+    themeToggle.addEventListener("click", () => {
+      const next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+      root.setAttribute("data-theme", next);
+      localStorage.setItem("academic-theme", next);
+    });
+
+    renderPublications();
+  </script>
+</body>
+</html>
